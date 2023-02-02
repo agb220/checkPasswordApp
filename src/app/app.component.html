@@ -1,0 +1,51 @@
+<div class="wrapper">
+  <form class="form _container" #passwordsForm="ngForm">
+    <div ngModelGroup="passwords" #passwords="ngModelGroup" appCheckPassword>
+      <h1 class="form-text">Password checking app</h1>
+      <div class="form-group">
+        <label for="password"></label>
+        <input
+          type="password"
+          class="input"
+          id="password"
+          placeholder="Password"
+          #passwordControl="ngModel"
+          name="passwordControl"
+          required
+          id="password"
+          [(ngModel)]="password"
+        />
+        <div class="form-control">
+          <div
+            [ngClass]="{
+        check: true,
+        'check check-dark': passwords.errors?.['strength'] === null,
+        'check check-danger':
+          passwords.errors?.['strength'] === 0 || passwords.errors?.['strength'] === 1,
+        'check check-warning': passwords.errors?.['strength']=== 2,
+        'check check-success': passwords.errors?.['strength'] === 3
+      }"
+          ></div>
+          <div
+            [ngClass]="{
+        check: true,
+        'check check-danger': passwords.errors?.['strength'] === 0,
+        'check check-dark': passwords.errors?.['strength'] === 1 || passwords.errors?.['strength'] === null,
+        'check check-warning': passwords.errors?.['strength'] === 2,
+        'check check-success': passwords.errors?.['strength'] === 3
+      }"
+          ></div>
+          <div
+            [ngClass]="{
+        check: true,
+        'check check-danger': passwords.errors?.['strength'] === 0,
+        'check check-dark':
+          passwords.errors?.['strength'] === 1 || passwords.errors?.['strength']=== 2 || passwords.errors?.['strength'] === null,
+        'check check-success': passwords.errors?.['strength']=== 3
+      }"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
